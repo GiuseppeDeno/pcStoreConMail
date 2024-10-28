@@ -16,7 +16,7 @@ public class MailConfig {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-
+///configurazione email . usare gmail con pass per App esterne generata da gmail
         mailSender.setUsername("la tua mail ");
         mailSender.setPassword(" ");
 
