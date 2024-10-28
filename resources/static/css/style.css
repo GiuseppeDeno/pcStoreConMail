@@ -8,13 +8,13 @@
             margin-bottom: 30px;
         }
 
-        /* Riduce i margini degli elementi del form avvicinando le righe*/
+        /* avvicino le righe*/
         #gestioneMagazzino label, #gestioneMagazzino input {
             margin-top: 5px;
             font-size: 0.9rem;
         }
 
-        /* Ridimensiona l'input di testo */
+       
         #gestioneMagazzino input[type="text"], #gestioneMagazzino input[type="number"] {
             font-size: 0.9rem;
             padding: 5px;
@@ -25,14 +25,14 @@
             width: 100%;
         }
 
-        /* Stile pulsante di invio */
+       
         #gestioneMagazzino .btn {
             width: 100%;
             margin-top: 15px;
         }
         
         
-        /*larghezza fissa delle card*/
+     
         
         .card{
 	height:200px!important;
