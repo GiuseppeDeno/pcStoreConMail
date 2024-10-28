@@ -339,27 +339,3 @@ public class MyControllerPcSql {
 
 
 
-//nota bene "redirect:/carrello"
-//
-//Quando un metodo nel controller restituisce una stringa con il prefisso "redirect:", Spring interpreta questa stringa come un'istruzione per fare un reindirizzamento HTTP (HTTP Redirect) a un’altra rotta o URL. In questo caso:
-//
-//    "redirect:/carrello":
-//        Fa un reindirizzamento alla rotta /carrello, attivando quindi il metodo printCarrello() del controller.
-//        Questo processo dice al browser del client di effettuare una nuova richiesta HTTP per accedere alla pagina del carrello.
-//
-//Perché Usare redirect
-//
-//In un flusso di acquisto come quello del tuo esempio, il redirect è usato per assicurare che, dopo ogni modifica nel carrello (aggiunta, rimozione, o aggiornamento di quantità), il client visualizzi il carrello aggiornato senza ricaricare manualmente la pagina. Questo è utile anche per prevenire problemi di "refresh" delle pagine dopo un'azione, evitando di reinviare accidentalmente i dati di una richiesta POST se l'utente aggiorna la pagina.
-//Esempio di Flusso Usando "redirect:/carrello"
-//
-//    Aggiunta al Carrello:
-//        Quando l'utente invia il form per aggiungere un PC al carrello, il metodo buy() viene invocato.
-//        Dopo aver aggiunto il PC alla lista pcSelezionati, buy() restituisce "redirect:/carrello".
-//        Il client è quindi indirizzato alla rotta /carrello, e Spring invoca printCarrello() per mostrare il carrello aggiornato.
-//
-//    Rimozione di un Prodotto:
-//        Se l'utente rimuove un prodotto, il metodo removeProduct() viene chiamato.
-//        Dopo aver rimosso il prodotto, il metodo restituisce "redirect:/carrello", assicurando che il client veda il carrello aggiornato.
-//
-//    Modifica della Quantità di un Prodotto:
-//        Con l'aggiornamento della quantità tramite modifica, si ritorna sempre "redirect:/carrello", per visualizzare le modifiche.
