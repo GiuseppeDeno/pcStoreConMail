@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo Prodotti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styling per la sidebar */
+        .sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #f4f4f4;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+            overflow-y: auto; /*SCROLL sul carrello Permette lo scroll se ci sono molti prodotti */
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div th:include="layout/navbar :: navbar"></div>
+    <div class="container">
+        <h3>Catalogo</h3>
+        <div class="row">
+            <div class="col l8">
+                <div class="row">
+                    <div class="col l4" th:each="prodotto : ${lista}">
+                        <div class="card" style=" height: 350px">
+                        
+                         <!-- -mi serve il card-content-wrapper per dare una altezza standard a tutte le card  -->
+                             <div class="card-content-wrapper " style="height: 200px; "> 
+                  
+                            <div class="card-image waves-effect waves-block waves-light" style="display: flex; justify-content: center; align-items: center;">
+                            <!-- impostando l'altezza devo fare object-fit contain -->
+                                <img class="activator" th:src="${prodotto.url}" alt="Immagine Prodotto" style="object-fit:contain; height: 100px; padding-top:10px">
+                            </div>
+                           
+                           <!-- Contenuto della card -->
+                        <div class="card-content" >
+       
+                                <span class="card-title activator grey-text text-darken-4" th:text="${prodotto.nome}">
+                                    <i class="material-icons right">more_vert</i>
+                                </span>
+                                <p>Prezzo: <span th:text="${prodotto.prezzo} + ' €'"></span></p>
+                                <!-- mapping che mi serve per aggiungere al carrello  -->
+                                <form action="/aggiungiCarrello" method="post"  >
+                                    <input type="hidden" name="nome" th:value="${prodotto.nome}">
+                                    <label for="quantita">Quantità:</label>
+                                    <input type="number" name="num" value="1" min="1" max="100">
+                                    <button type="submit" class="btn">Aggiungi </button>
+                                </form>
+                               
+                            </div>
+                              </div><!-- fine div card-content-wrapper -->
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4" th:text="${prodotto.marca}">Marca<i class="material-icons right">close</i></span>
+                                <p>Descrizione: <span th:text="${prodotto.descrizione}"></span></p>
+                            </div>
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar per il carrello -->
+            <div class="sidebar">
+                <h4>Carrello</h4>
+               <div id="carrello">
+    <div th:each="item : ${carrello}" class="cart-item">
+        <span th:text="${item.nome}"></span>
+        <span th:text="${item.qnt}"></span> <!-- Usa "qnt" se il metodo nella classe pcComprati si chiama getQnt -->
+       
+        <form action="/rimuoviDalCarrello" method="post">
+            <input type="hidden" name="nome" th:value="${item.nome}">
+            <button type="submit" class="btn red btn-small">Rimuovi</button>
+       
+        </form>
+    </div>
+    <h5>Totale: <span th:text="${somma} + ' €'"></span></h5>
+  <!--    <form action="/pulisciCarrello" method="post>
+    <button  type="submit" class="btn red" >Svuota Carrello</button>
+   </form>
+         -->
+   
+    <form action="/confermaAcquisto" method="post">
+    
+    <!-- prima avevo class="btn-green" con un verde diverso -->
+        <button type="submit" class="btn">Conferma Acquisto</button>
+    </form>
+</div>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

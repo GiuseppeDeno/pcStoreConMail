@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina di form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<!-- Inclusione del fragment Navbar -->
+<div th:include="layout/navbar :: navbar"></div>
+
+<div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;" id="homeDiv">
+    <h1>Entery Dashboard</h1>
+  <!--   <img id="imgHome" src="/css/front.jpeg" alt="Immagine Prodotto">   --> 
+    
+    <div id="divEnteryButtons" style="display:flex; align-items:center; justify-content:space-between; gap: 20px;">  
+    <form action="/listaPcStore" method="GET">
+        <input type="submit" class="btn" value="Entrata STORE">
+    </form>
+    
+    <form action="/vaiMagazzino" method="GET">
+        <input type="submit" class="btn" value="Gestione Magazzino">
+    </form>
+    </div>
+    
+</div>
+
+</body>
+</html>
