@@ -74,9 +74,7 @@ public class MyControllerPcSql {
     }
     
     //metodo per rimuovere un prodotto dal magazino. ovvero tutto 
-//    <form action="/rimuoviDalMagazzino" method="post">
-//    <input type="hidden" name="nome" value="${pc.nome}">
-//    <button type="submit">Rimuovi</button>
+//
 //</form>
     @PostMapping("/rimuoviDalMagazzino")
     public String rimuoviDalMagazzino(@RequestParam("nome") String nome, Model m1) {
@@ -111,8 +109,7 @@ public class MyControllerPcSql {
     			if(pc.getNome().equals(nome)) {
     				//controlliamo se quei pc sono disponibili in magazzino
     				 if(pc.qntMagazzino>=num) {
-    					 //metto il pc nell'array list di pcAcquistati che poi verra stampato nel carrello
-    					// utilizziamol l'oggetto pc esistente per creare un oggetto pcComprati
+    					
     	                    pcComprati pcAcquistato = new pcComprati(
     	                        pc.getNome(),
     	                        pc.getMarca(),
